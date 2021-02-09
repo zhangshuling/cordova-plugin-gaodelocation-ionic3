@@ -45,8 +45,10 @@ public class SingleLocaiton implements SingleLocaitonInterface {
      * @since 2.8.0
      */
     public void startLocation(JSONObject message) throws JSONException {
-        //根据根据前台传参从新 输入定位参数
-        this.setLocationOption(message);
+        if(message != null ) {
+          //根据根据前台传参从新 输入定位参数
+          this.setLocationOption(message);
+        }
         // 设置定位参数
         locationClient.setLocationOption(locationOption);
         // 启动定位

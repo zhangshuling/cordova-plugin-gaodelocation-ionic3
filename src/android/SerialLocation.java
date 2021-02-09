@@ -14,7 +14,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocationQualityReport;
-import com.hosp123.testapp.location.R;
+import com.schoolwisdoms.app.student.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -206,7 +206,7 @@ public class SerialLocation implements SerialLocationInterface{
     private NotificationManager notificationManager = null;
     boolean isCreateChannel = false;
 
-    private static final String NOTIFICATION_CHANNEL_NAME = "BackgroundLocation";
+    private static final String NOTIFICATION_CHANNEL_NAME = "后台定位";
 
     @SuppressLint("NewApi")
     public Notification buildNotification() {
@@ -233,7 +233,7 @@ public class SerialLocation implements SerialLocationInterface{
             builder = new Notification.Builder(mContext);
         }
         builder
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.icon)
                 .setContentTitle(getAppName(mContext))
                 .setContentText("正在后台运行")
                 .setWhen(System.currentTimeMillis());

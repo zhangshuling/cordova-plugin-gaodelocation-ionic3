@@ -10,8 +10,10 @@
 }
 
 - (void)getCurrentPosition:(NSMutableDictionary *)message {
-    [self setLocationOption:message];
+    // [self setLocationOption:message];
     //进行单次带逆地理定位请求
+    // 弹出权限，定位一次，不需要设置setLocationOption (message 为空，会导致setLocationOption 方法报错)
+    [self.locationManager requestLocationWithReGeocode:true completionBlock:self.completionBlock];
 }
 
 - (id)init {

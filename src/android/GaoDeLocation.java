@@ -45,7 +45,10 @@ public class GaoDeLocation extends CordovaPlugin implements SingleLocaitonDelega
             if (this.isNeedCheckPermissions(needPermissions)) {
                 this.checkPermissions(needPermissions);
             } else {
-                JSONObject message = args.getJSONObject(0);
+                JSONObject message = null;
+                if(args != null  &&  args.length() > 1){
+                  message = args.getJSONObject(0);
+                }
                 this.singleLocaiton(callbackContext,message);
             }
             return true;
@@ -143,7 +146,8 @@ public class GaoDeLocation extends CordovaPlugin implements SingleLocaitonDelega
      */
     public void onPause(boolean multitasking) {
         if (null != this.serialLocation.locationClient) {
-            this.serialLocation.locationClient.enableBackgroundLocation(2001, this.serialLocation.buildNotification());
+            // this.serialLocation.locationClient.enableBackgroundLocation(2001, this.serialLocation.buildNotification());
+          this.serialLocation.locationClient.disableBackgroundLocation(true);
         }
     }
 
@@ -215,6 +219,7 @@ public class GaoDeLocation extends CordovaPlugin implements SingleLocaitonDelega
     @Override
     public void PositionInfo(AMapLocation location) throws JSONException {
         sendPositionInfo(location, singleLocaitonCC);
+       this.serialLocation.stopLocation();
     }
 
     /**
